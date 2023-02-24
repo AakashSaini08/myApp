@@ -1,3 +1,5 @@
+
+
 import React, { useEffect , useState} from 'react'
 import { useNavigate ,useParams} from 'react-router-dom'
 import axios from "axios"
@@ -7,8 +9,9 @@ function Cities() {
     const navigate = useNavigate();
 
     const[city,setCity] = useState([]);
+    const[filteredCities,setFilteredCities] = useState([]);
     const[input,setInput] =useState("");
-   const {selectedcity}=useParams()
+   const {selectedcity}=useParams();
    const [err,setErr]=useState()
 
   useEffect(()=>{
@@ -17,6 +20,7 @@ function Cities() {
       country:selectedcity
     }).then((result)=>{
       setCity(result.data.data);
+      setFilteredCities(result.data.data);
     }).catch(err=>{
       if(err.response.status==500){
         setErr("--Error--")
@@ -24,33 +28,28 @@ function Cities() {
     })     
   },[])
 
-  const filteredData=(e)=>{
-    e.preventDefault();
-    let input =e.target.value.toLowerCase();
-    setInput(input)
-    let arr=[];
-     arr =city.filter((item)=>{
-        if(input === '') return item;
-        else{
-          return item.toLowerCase().includes(input)
-        }
-    })
-setCity(arr);
-  }
+ useEffect(()=>{
+ 
+      let inputLocal =input;
+      let arr=[];
+        arr =city.filter((item)=>{
+            return item.toLowerCase().includes(inputLocal)
+      })
+      setFilteredCities(arr);
+    },[input])
+
   
   return (
     <div>
-    
         <h2 >City List</h2>
-        
         <input type="text"
           placeholder='Search here'
-          onChange={filteredData}
+          onChange={(e)=>setInput(e.target.value)}
           value={input}
         />
         <button style={{borderColor:"black",margin:10}} onClick={()=>navigate(-1)}>Go Back</button>
         <ul>
-          {city.map(val=><li>{val}</li>)}
+          {filteredCities.map(val=><li>{val}</li>)}
         </ul>
         <h1>{err}</h1>
         
