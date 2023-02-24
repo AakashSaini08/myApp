@@ -1,3 +1,5 @@
+
+import  axios  from 'axios';
 import React, { useEffect, useState } from 'react'
 import {useNavigate} from 'react-router-dom';
 
@@ -9,14 +11,21 @@ function Dropdown() {
 
     useEffect(()=>{
 
-        var values;
-        fetch('https://countriesnow.space/api/v0.1/countries/capital')
-        .then(function(res){
-            return res.json();
-        }).then(function(json){
-            values = json;
-            setCountry(values.data)
+        // var values;
+        // fetch('https://countriesnow.space/api/v0.1/countries/capital')
+        // .then(function(res){
+        //     return res.json();
+        // }).then(function(json){
+        //     values = json;
+        //     setCountry(values.data)
+        // })
+
+        axios.get('https://countriesnow.space/api/v0.1/countries/capital')
+        .then((res)=>{
+            setCountry(res.data.data);
         })
+
+        
 
     },[]);
 

@@ -27,23 +27,19 @@ function Cities() {
     })     
   },[])
 
-  // useEffect(()=>{
-  //   fetch("https://countriesnow.space/api/v0.1/countries/cities")
-  //   .then((res)=>{
-  //     return res.json();
-  //   }).then((data)=>{
-  //     console.log(data);
-  //   })
-  // },[])
-
  useEffect(()=>{
- 
-      let inputLocal =input;
+
+  const data = setTimeout(()=>{
+    let inputLocal =input;
       let arr=[];
         arr =city.filter((item)=>{
             return item.toLowerCase().includes(inputLocal)
       })
+      console.log(arr[0]);
       setFilteredCities(arr);
+  },500)
+ 
+  return()=> clearTimeout(data)
     },[input])
 
   
