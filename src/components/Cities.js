@@ -3,7 +3,7 @@
 import React, { useEffect , useState} from 'react'
 import { useNavigate ,useParams} from 'react-router-dom'
 import axios from "axios"
-import UseEffect from './UseEffect';
+
 
 function Cities() {
     const navigate = useNavigate();
@@ -15,18 +15,26 @@ function Cities() {
    const [err,setErr]=useState()
 
   useEffect(()=>{
-    let data=selectedcity;
     axios.post("https://countriesnow.space/api/v0.1/countries/cities",{
       country:selectedcity
     }).then((result)=>{
       setCity(result.data.data);
       setFilteredCities(result.data.data);
     }).catch(err=>{
-      if(err.response.status==500){
+      if(err.response.status===500){
         setErr("--Error--")
       }
     })     
   },[])
+
+  // useEffect(()=>{
+  //   fetch("https://countriesnow.space/api/v0.1/countries/cities")
+  //   .then((res)=>{
+  //     return res.json();
+  //   }).then((data)=>{
+  //     console.log(data);
+  //   })
+  // },[])
 
  useEffect(()=>{
  

@@ -4,7 +4,6 @@ import {useNavigate} from 'react-router-dom';
 function Dropdown() {
     const[state,setState] = useState('');
     const [country,setCountry]=useState([]);
-    const [city,setCity]=useState([]);
 
     const navigate = useNavigate();
 
@@ -34,7 +33,6 @@ function Dropdown() {
         }
         </select>
        
-        <h2 style={{margin:10,color:"white"}}>{state}</h2>
         <button style={{borderColor:"black",margin:10}} onClick={()=>navigate(`${state}`) }>Next</button>
         
     </div>
