@@ -1,0 +1,55 @@
+.App {
+  text-align: center;
+}
+.heading{
+  margin-left: 900px;
+  margin-top: 10px;
+  font-size: 15px;
+}
+.delete{
+  color:rgba(231, 22, 22, 0.918);
+  border: 2px solid rgba(231, 22, 22, 0.918);
+  background-color: white;
+  border-radius: 8px;
+  padding: 3px 25px;
+  font-size: 20px;
+
+}
+.add{
+  color:rgb(44, 118, 148);
+  border: 2px solid rgb(44, 118, 148);
+  background-color: white;
+  border-radius: 8px;
+  padding: 3px 25px;
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.searchicon{
+  padding:3px 10px;
+}
+input{
+  font-size: 20px;
+  padding:3px 10px;
+  margin-left: 10px;
+  border-radius: 20px;
+}
+nav{
+  display: flex;
+  margin: 10px;
+  padding: 10px 0px ;
+  justify-content: space-evenly;
+  background-color: rgb(210, 207, 207);
+ 
+}
+button{
+  border: none  ;
+  font-size: 20px;
+  margin: 10px;
+  background-color: rgb(210, 207, 207);
+
+}
+.superTitle{
+  font-size: 30px;
+  text-align: center;
+}
