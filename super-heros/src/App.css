@@ -2,7 +2,7 @@
   text-align: center;
 }
 .heading{
-  margin-left: 900px;
+  margin-left: 750px;
   margin-top: 10px;
   font-size: 15px;
 }
@@ -51,5 +51,9 @@ button{
 }
 .superTitle{
   font-size: 30px;
+  text-align: center;
+}
+
+Table{
   text-align: center;
 }
