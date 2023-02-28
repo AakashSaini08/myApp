@@ -57,3 +57,7 @@ button{
 Table{
   text-align: center;
 }
+
+.tableHead{
+  background-color: rgb(210, 207, 207);
+}

@@ -1,12 +1,9 @@
 import React from 'react'
-import ViewData from './ViewData'
-// import {Link} from 'react-router-dom';
 
-
-function Navbar({data}) {
+function Navbar ({ data }) {
   return (
     <div>
-    
+
     <nav>
         <button>Id</button>
         <button>First Name</button>
@@ -16,7 +13,6 @@ function Navbar({data}) {
         <button>Gender</button>
         <button>Age</button>
     </nav>
-      <ViewData data={data}/>
     </div>
   )
 }
