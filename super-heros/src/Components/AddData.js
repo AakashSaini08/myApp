@@ -20,6 +20,7 @@ function AddData () {
 
   const [data, setData] = useState(myData())
   const [data2, setData2] = useState([])
+  // const [inputData, setInputData] = useState([])
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [superHero, setSuperHero] = useState('')
@@ -58,18 +59,29 @@ function AddData () {
     setQuery(e.target.value.toLowerCase())
     let arr = []
     arr = data.filter((item) => {
-      console.log(item)
-      return (item.firstName.toLowerCase().includes(e.target.value.toLowerCase()) || item.lastName.toLowerCase().includes(e.target.value.toLowerCase()) || item.superHero.toLowerCase().includes(e.target.value.toLowerCase()) || item.email.toLowerCase().includes(e.target.value.toLowerCase()) || item.gender.toLowerCase().includes(e.target.value.toLowerCase()) || item.age.toLowerCase().includes(e.target.value.toLowerCase()))
+      return (item.firstName.toLowerCase().includes(e.target.value.toLowerCase()) ||
+      item.lastName.toLowerCase().includes(e.target.value.toLowerCase()) ||
+      item.superHero.toLowerCase().includes(e.target.value.toLowerCase()) ||
+      item.email.toLowerCase().includes(e.target.value.toLowerCase()) ||
+      item.gender.toLowerCase().includes(e.target.value.toLowerCase()) ||
+      item.age.toLowerCase().includes(e.target.value.toLowerCase()))
     }
     )
     setData2(arr)
     setCnd(true)
   }
+
+  function handleDelete () {
+    setData(data.filter((val) => !data.includes(val.id)))
+    // setInputData([])
+    // setQuery('')
+  }
+
   return (
     <>
 
     <div className='heading'>
-        <button className='delete' >Delete</button>
+        <button className='delete'onClick={handleDelete} >Delete</button>
         <button className='add' onClick={handleShow} >Add Record</button>
         <input type="text"
           name="item"
