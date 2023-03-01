@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Table from 'react-bootstrap/Table'
 
-function ViewData ({ data, data2, cnd }) {
-  const [userData, setUserData] = useState([])
+function ViewData ({ data, data2, cnd, userData, setUserData }) {
+  // useEffect(() => {
+  //   console.log(userData, 'userData')
+  // }, [userData])
   return (
 
     <div className='view-container'>
@@ -27,9 +29,9 @@ function ViewData ({ data, data2, cnd }) {
           {
             cnd
               ? data2.map(list => (
-            <tr key={list}>
+            <tr key={list.id }>
                 <td >
-                 <input label ={data.id} name={data.id} type="checkbox" checked = { userData.includes(list.id)} onChange={(e) => {
+                 <input name={data.id} type="checkbox" checked = { userData.includes(list.id)} onChange={(e) => {
                    if (e.target.checked) {
                      setUserData([...userData, list.id])
                    } else {
@@ -47,7 +49,7 @@ function ViewData ({ data, data2, cnd }) {
             </tr>)
               )
               : data.map(list => (
-            <tr key={list}>
+            <tr key={list.id}>
                 <td >
                  <input type="checkbox" checked = { userData.includes(list.id)} onChange={(e) => {
                    if (e.target.checked) {

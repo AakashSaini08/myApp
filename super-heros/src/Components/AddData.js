@@ -3,6 +3,9 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import ViewData from './ViewData'
+// import { useForm } from 'react-hook-form'
+
+// eslint-disable-next-line no-unused-vars
 
 function AddData () {
   const myData = () => {
@@ -14,13 +17,12 @@ function AddData () {
     }
   }
   const [show, setShow] = useState(false)
-
+  const [userData, setUserData] = useState([])
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
   const [data, setData] = useState(myData())
   const [data2, setData2] = useState([])
-  // const [inputData, setInputData] = useState([])
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [superHero, setSuperHero] = useState('')
@@ -29,6 +31,11 @@ function AddData () {
   const [age, setAge] = useState('')
   const [query, setQuery] = useState('')
   const [cnd, setCnd] = useState(false)
+  const [msgf, setMsgf] = useState('')
+  const [msgl, setMsgl] = useState('')
+  const [msge, setMsge] = useState('')
+  const [msga, setMsga] = useState('')
+
 
   const handleAdd = (e) => {
     e.preventDefault()
@@ -48,6 +55,8 @@ function AddData () {
     setEmail('')
     setGender('')
     setAge('')
+    handleClose(true)
+    window.location.reload(false)
   }
 
   useEffect(() => {
@@ -72,16 +81,68 @@ function AddData () {
   }
 
   function handleDelete () {
-    setData(data.filter((val) => !data.includes(val.id)))
-    // setInputData([])
-    // setQuery('')
+    setData(data.filter((val) => !userData.includes(val.id)))
+    setUserData([])
+  }
+
+  const handleFirstName = (e) => {
+    e.preventDefault()
+    
+    setFirstName(e.target.value)
+    const regEx = /^[a-z ,.'-]+$/i
+    if (regEx.test(firstName)) {
+      setMsgf('First name is valid')
+    }
+    else if(!regEx.test(firstName) || firstName === '')
+    {
+      setMsgf('First name is not valid')
+    }
+  }
+
+  const handleLastName = (e) => {
+    e.preventDefault()
+    setLastName(e.target.value)
+    const regEx = /^[a-z ,.'-]+$/i
+    if (regEx.test(lastName)) {
+      setMsgl('Last name is valid')
+    }
+    else if(!regEx.test(lastName) || lastName === '')
+    {
+      setMsgl('Last name is not valid')
+    }
+  }
+
+  const handleEmail= (e) => {
+    e.preventDefault()
+    setEmail(e.target.value)
+    const regEx = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/i
+    if (regEx.test(email)) {
+      setMsge('Email is valid')
+    }
+    else if(!regEx.test(email) || email === '')
+    {
+      setMsge('Email is not valid')
+    }
+  }
+
+  const handleAge= (e) => {
+    e.preventDefault()
+    setAge(e.target.value)
+    
+    if (age > 0 && age < 100) {
+      setMsga('Age is valid')
+    }
+    else
+    {
+      setMsga('Age is not valid')
+    }
   }
 
   return (
     <>
 
     <div className='heading'>
-        <button className='delete'onClick={handleDelete} >Delete</button>
+        <button className='delete' onClick={handleDelete} >Delete</button>
         <button className='add' onClick={handleShow} >Add Record</button>
         <input type="text"
           name="item"
@@ -94,30 +155,35 @@ function AddData () {
     </div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Enter Data</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form autoComplete='off' onSubmit={handleAdd}>
+          <Form autoComplete='off' >
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>first Name</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="first name"
-                onChange={(e) => setFirstName(e.target.value)}
+                onChange={handleFirstName}
                 value ={firstName}
-                required
+                required="required"
               />
+              <p>
+              {msgf}
+              </p>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Last Name</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="last name"
-                onChange={(e) => setLastName(e.target.value)}
+                onChange={handleLastName}
                 value ={lastName}
-                required
+                required="required"
               />
+              <p>{msgl}</p>
             </Form.Group>
+            
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Super Hero name</Form.Label>
               <Form.Control
@@ -125,7 +191,7 @@ function AddData () {
                 placeholder="super hero"
                 onChange={(e) => setSuperHero(e.target.value)}
                 value ={superHero}
-                required
+                required="required"
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -133,10 +199,11 @@ function AddData () {
               <Form.Control
                 type="email"
                 placeholder="name@example.com"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleEmail}
                 value ={email}
-                required
+                required="required"
               />
+              <p>{msge}</p>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Gender</Form.Label>
@@ -145,7 +212,7 @@ function AddData () {
                 placeholder="M/F"
                 onChange={(e) => setGender(e.target.value)}
                 value ={gender}
-                required
+                required="required"
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -153,10 +220,11 @@ function AddData () {
               <Form.Control
                 type="number"
                 placeholder="00"
-                onChange={(e) => setAge(e.target.value)}
+                onChange={handleAge}
                 value ={age}
-                required
+                required="required"
               />
+              <p>{msga}</p>
             </Form.Group>
 
           </Form>
@@ -170,7 +238,7 @@ function AddData () {
           </Button>
         </Modal.Footer>
       </Modal>
-        <ViewData data={data} data2={data2} cnd={cnd} />
+        <ViewData data={data} data2={data2} cnd={cnd} userData={userData} setUserData={setUserData}/>
     </>
   )
 }
