@@ -61,3 +61,6 @@ Table{
 .tableHead{
   background-color: rgb(210, 207, 207);
 }
+p{
+  color: blue;
+}

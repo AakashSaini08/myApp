@@ -35,6 +35,7 @@ function AddData () {
   const [msgl, setMsgl] = useState('')
   const [msge, setMsge] = useState('')
   const [msga, setMsga] = useState('')
+  const [msgs, setMsgs] = useState('')
 
 
   const handleAdd = (e) => {
@@ -112,6 +113,13 @@ function AddData () {
     }
   }
 
+  const handleSuperHero = (e) => {
+    e.preventDefault()
+    setSuperHero(e.target.value)
+      setMsgs('Super hero name is valid')
+
+  }
+
   const handleEmail= (e) => {
     e.preventDefault()
     setEmail(e.target.value)
@@ -128,11 +136,11 @@ function AddData () {
   const handleAge= (e) => {
     e.preventDefault()
     setAge(e.target.value)
-    
-    if (age > 0 && age < 100) {
+    const regEx =/^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|100)+$/i
+    if (regEx.test(age)) {
       setMsga('Age is valid')
     }
-    else
+    else if (!regEx.test(age) || age === '')
     {
       setMsga('Age is not valid')
     }
@@ -158,7 +166,7 @@ function AddData () {
           <Modal.Title>Enter Data</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form autoComplete='off' >
+        <Form autoComplete='off' >
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>first Name</Form.Label>
               <Form.Control
@@ -189,10 +197,11 @@ function AddData () {
               <Form.Control
                 type="text"
                 placeholder="super hero"
-                onChange={(e) => setSuperHero(e.target.value)}
+                onChange={handleSuperHero}
                 value ={superHero}
                 required="required"
               />
+              <p>{msgs}</p>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Email</Form.Label>
