@@ -64,3 +64,39 @@ Table{
 p{
   color: blue;
 }
+img{
+  width: 150px;
+  height: 150px;
+}
+.item-detail{
+  margin-left: 20px;
+}
+.wrapper-class{
+ 
+  margin-top: 50px;
+  text-align: center;
+  width:300px;
+  height: 250px;
+  border: 2px solid grey;
+}
+.data-list{
+  color: black;
+}
+.cart-btn{
+  color: white;
+  background-color: rgb(100, 100, 216);
+  border-radius: 5px;
+}
+.cart{
+  position: absolute;
+  top: 2%;
+  right: 2%;
+
+}
+.cart-img{
+  width: 50px;
+  height: 50px;
+}
+.hcomp{
+  text-align: center;
+}

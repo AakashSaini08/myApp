@@ -1,12 +1,15 @@
 
 import './App.css'
 import React from 'react'
-import Head from './Components/Head'
+// import Head from './Components/Head'
+import HomeContainer from './Containers/HomeContainer'
+// import UseReducer from './Components/UseReducer'
 
 function App () {
   return (
     <>
-      <Head/>
+      <HomeContainer/>
+      {/* <UseReducer/> */}
     </>
 
   )

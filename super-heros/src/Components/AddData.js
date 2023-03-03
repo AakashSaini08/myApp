@@ -136,7 +136,7 @@ function AddData () {
   const handleAge= (e) => {
     e.preventDefault()
     setAge(e.target.value)
-    const regEx =/^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|100)+$/i
+    const regEx =/^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9])+$/i
     if (regEx.test(age)) {
       setMsga('Age is valid')
     }

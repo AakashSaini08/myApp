@@ -31,7 +31,9 @@ function ViewData ({ data, data2, cnd, userData, setUserData }) {
               ? data2.map(list => (
             <tr key={list.id }>
                 <td >
-                 <input name={data.id} type="checkbox" checked = { userData.includes(list.id)} onChange={(e) => {
+                 <input name={data.id} type="checkbox" 
+                 checked = { userData.includes(list.id)} 
+                 onChange={(e) => {
                    if (e.target.checked) {
                      setUserData([...userData, list.id])
                    } else {
@@ -51,7 +53,9 @@ function ViewData ({ data, data2, cnd, userData, setUserData }) {
               : data.map(list => (
             <tr key={list.id}>
                 <td >
-                 <input type="checkbox" checked = { userData.includes(list.id)} onChange={(e) => {
+                 <input type="checkbox" 
+                 checked = { userData.includes(list.id)}
+                 onChange={(e) => {
                    if (e.target.checked) {
                      setUserData([...userData, list.id])
                    } else {
