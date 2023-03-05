@@ -215,14 +215,17 @@ function AddData () {
               <p>{msge}</p>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Gender</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="M/F"
+              <label htmlFor="Gender"> Gender </label>
+              <select name="gender"
                 onChange={(e) => setGender(e.target.value)}
                 value ={gender}
-                required="required"
-              />
+                required="required">
+              <option value="select" >--Select--</option>
+              <option value="male" >Male</option>
+              <option value="female" >Female</option>
+              <option value="other" >Other</option>
+              </select>
+              
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Age</Form.Label>
