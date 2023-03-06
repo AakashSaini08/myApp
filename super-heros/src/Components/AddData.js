@@ -62,6 +62,7 @@ function AddData () {
 
   useEffect(() => {
     localStorage.setItem('data', JSON.stringify(data))
+    setData(data)
   }, [data])
 
   const filteredData = (e) => {
@@ -250,7 +251,7 @@ function AddData () {
           </Button>
         </Modal.Footer>
       </Modal>
-        <ViewData data={data} data2={data2} cnd={cnd} userData={userData} setUserData={setUserData}/>
+        <ViewData data={data} setData={setData} data2={data2} cnd={cnd} userData={userData} setUserData={setUserData} firstName={firstName}/>
     </>
   )
 }
